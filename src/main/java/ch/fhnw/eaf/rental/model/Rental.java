@@ -1,17 +1,29 @@
 package ch.fhnw.eaf.rental.model;
 
-import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Rental.class)
+@Entity
+@Table(name = "RENTALS")
 public class Rental {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="RENTAL_ID")
 	private Long id;
 
+	@OneToOne
+	@JoinColumn(name="USER_ID")
 	private Movie movie;
+	@ManyToOne
+	@JoinColumn(name="MOVIE_ID")
 	private User user;
+	@Column(name="RENTAL_RENTALDATE")
 	private LocalDate rentalDate;
+	@Column(name="RENTAL_RENTALDAYS")
 	private int rentalDays;
 
 	public Rental() {
