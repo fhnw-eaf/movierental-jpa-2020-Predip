@@ -21,6 +21,8 @@ public class Movie {
 	@JoinColumn(name="PRICECATEGORY_FK")
 	private PriceCategory priceCategory;
 
+	public Movie() {}
+
 	public Movie(Long id, String title, LocalDate releaseDate, boolean rented, PriceCategory priceCategory) {
 		this(title, releaseDate, priceCategory);
 		setId(id);

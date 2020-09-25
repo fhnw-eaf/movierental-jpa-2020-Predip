@@ -16,10 +16,10 @@ public class Rental {
 	private Long id;
 
 	@OneToOne
-	@JoinColumn(name="USER_ID")
+	@JoinColumn(name="MOVIE_ID")
 	private Movie movie;
 	@ManyToOne
-	@JoinColumn(name="MOVIE_ID")
+	@JoinColumn(name="USER_ID")
 	private User user;
 	@Column(name="RENTAL_RENTALDATE")
 	private LocalDate rentalDate;

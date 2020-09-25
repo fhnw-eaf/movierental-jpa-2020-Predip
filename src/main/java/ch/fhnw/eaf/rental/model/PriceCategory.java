@@ -12,7 +12,8 @@ import javax.persistence.*;
 @JsonSerialize(using = PriceCategorySerializer.class)
 @Entity
 @Table(name = "PRICECATEGORIES")
-@DiscriminatorColumn
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING,
+		name = "PRICECATEGORY_TYPE")
 public abstract class PriceCategory {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)

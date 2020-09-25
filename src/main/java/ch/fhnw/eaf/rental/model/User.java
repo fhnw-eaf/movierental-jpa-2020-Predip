@@ -22,8 +22,10 @@ public class User {
 	private String firstName;
 	@Column(name="USER_EMAIL")
 	private String email;
-	@OneToMany(mappedBy = "Rental.user")
+	@OneToMany(mappedBy = "user")
 	private List<Rental> rentals;
+
+	public User() {}
 
 	public User(String lastName, String firstName) {
 		this.lastName = lastName;
