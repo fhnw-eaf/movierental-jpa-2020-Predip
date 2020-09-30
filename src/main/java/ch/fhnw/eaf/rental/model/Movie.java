@@ -6,8 +6,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "MOVIES")
 public class Movie {
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="MOVIE_ID")
 	private Long id;
 
@@ -17,11 +16,11 @@ public class Movie {
 	private LocalDate releaseDate;
 	@Column(name="MOVIE_RENTED")
 	private boolean rented;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="PRICECATEGORY_FK")
 	private PriceCategory priceCategory;
 
-	public Movie() {}
+	protected Movie() {}
 
 	public Movie(Long id, String title, LocalDate releaseDate, boolean rented, PriceCategory priceCategory) {
 		this(title, releaseDate, priceCategory);

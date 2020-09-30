@@ -11,8 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "USERS")
 public class User {
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="USER_ID")
 	private Long id;
 

@@ -12,11 +12,9 @@ import javax.persistence.*;
 @JsonSerialize(using = PriceCategorySerializer.class)
 @Entity
 @Table(name = "PRICECATEGORIES")
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING,
-		name = "PRICECATEGORY_TYPE")
+@DiscriminatorColumn(name = "PRICECATEGORY_TYPE")
 public abstract class PriceCategory {
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="PRICECATEGORY_ID")
 	private Long id;
 
