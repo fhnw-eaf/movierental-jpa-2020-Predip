@@ -39,7 +39,7 @@ public class JpaMovieRepository implements MovieRepository {
 
 	@Override
 	public void delete(Movie entity) {
-		em.remove(entity);
+		em.remove(em.merge(entity));
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class JpaRentalRepository implements RentalRepository {
 
 	@Override
 	public void delete(Rental entity) {
-		em.remove(entity);
+		em.remove(em.merge(entity));
 	}
 
 	@Override
