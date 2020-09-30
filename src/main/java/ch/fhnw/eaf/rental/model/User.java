@@ -24,7 +24,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Rental> rentals;
 
-	public User() {}
+	protected User() {}
 
 	public User(String lastName, String firstName) {
 		this.lastName = lastName;
