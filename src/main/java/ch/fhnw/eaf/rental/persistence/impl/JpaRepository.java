@@ -13,8 +13,8 @@ public abstract class JpaRepository<T> implements Repository<T, Long> {
     @PersistenceContext
     protected EntityManager em;
 
-    private Class<T> specificClass;
-    private String tableName;
+    private final Class<T> specificClass;
+    private final String tableName;
 
     public JpaRepository(Class<T> specificClass, String tableName) {
         this.specificClass = specificClass;
