@@ -6,9 +6,16 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import ch.fhnw.eaf.rental.json.PriceCategoryDeserializer;
 import ch.fhnw.eaf.rental.json.PriceCategorySerializer;
 
+import javax.persistence.*;
+
 @JsonDeserialize(using = PriceCategoryDeserializer.class)
 @JsonSerialize(using = PriceCategorySerializer.class)
-public abstract class PriceCategory {
+@Entity
+@Table(name = "PRICECATEGORIES")
+@DiscriminatorColumn(name = "PRICECATEGORY_TYPE")
+public abstract class PriceCategory extends BasicModel {
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="PRICECATEGORY_ID")
 	private Long id;
 
 	public Long getId() {

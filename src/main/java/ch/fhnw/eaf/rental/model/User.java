@@ -1,19 +1,30 @@
 package ch.fhnw.eaf.rental.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Rental.class)
-public class User {
+@Entity
+@Table(name = "USERS")
+public class User extends BasicModel {
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="USER_ID")
 	private Long id;
 
+	@Column(name="USER_NAME")
 	private String lastName;
+	@Column(name="USER_FIRSTNAME")
 	private String firstName;
+	@Column(name="USER_EMAIL")
 	private String email;
+	@OneToMany(mappedBy = "user")
 	private List<Rental> rentals;
+
+	protected User() {}
 
 	public User(String lastName, String firstName) {
 		this.lastName = lastName;

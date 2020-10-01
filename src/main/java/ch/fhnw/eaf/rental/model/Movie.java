@@ -1,14 +1,26 @@
 package ch.fhnw.eaf.rental.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
-public class Movie {
+@Entity
+@Table(name = "MOVIES")
+public class Movie extends BasicModel {
+	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="MOVIE_ID")
 	private Long id;
 
+	@Column(name="MOVIE_TITLE")
 	private String title;
+	@Column(name="MOVIE_RELEASEDATE")
 	private LocalDate releaseDate;
+	@Column(name="MOVIE_RENTED")
 	private boolean rented;
+	@ManyToOne
+	@JoinColumn(name="PRICECATEGORY_FK")
 	private PriceCategory priceCategory;
+
+	protected Movie() {}
 
 	public Movie(Long id, String title, LocalDate releaseDate, boolean rented, PriceCategory priceCategory) {
 		this(title, releaseDate, priceCategory);
