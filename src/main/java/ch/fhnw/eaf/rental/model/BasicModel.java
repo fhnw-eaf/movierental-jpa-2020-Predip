@@ -14,4 +14,5 @@ public abstract class BasicModel {
     public void setId(Long id) {
         this.id = id;
     }*/
+
 }
