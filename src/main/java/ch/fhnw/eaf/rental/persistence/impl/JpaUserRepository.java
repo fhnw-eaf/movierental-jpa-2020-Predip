@@ -4,56 +4,14 @@ import ch.fhnw.eaf.rental.model.User;
 import ch.fhnw.eaf.rental.persistence.UserRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class JpaUserRepository implements UserRepository {
+public class JpaUserRepository extends JpaRepository<User> implements UserRepository {
 
-	@PersistenceContext
-	private EntityManager em;
-
-	@Override
-	public Optional<User> findById(Long id) {
-		return Optional.ofNullable(em.find(User.class, id));
-	}
-
-	@Override
-	public List<User> findAll() {
-		TypedQuery<User> q = em.createQuery("SELECT u FROM User u", User.class);
-		return q.getResultList();
-	}
-
-	@Override
-	public User save(User t) {
-		return em.merge(t);
-	}
-
-	@Override
-	public void deleteById(Long id) {
-		em.remove(em.getReference(User.class, id));
-	}
-
-	@Override
-	public void delete(User entity) {
-		em.remove(em.merge(entity));
-	}
-
-	@Override
-	public boolean existsById(Long id) {
-		TypedQuery<Long> q = em.createQuery(
-				"SELECT COUNT(u) FROM User u WHERE u.id = :id", Long.class);
-		q.setParameter("id", id);
-		return q.getSingleResult() > 0;
-	}
-
-	@Override
-	public long count() {
-		return em.createQuery("SELECT COUNT(u) FROM User u", Long.class)
-				.getSingleResult();
+	public JpaUserRepository() {
+		super(User.class, "User");
 	}
 
 	@Override
