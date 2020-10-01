@@ -16,6 +16,10 @@ public class JpaMovieRepository implements MovieRepository {
 	@PersistenceContext
 	private EntityManager em;
 
+	/*public JpaMovieRepository(Movie specificClass) {
+		super(specificClass.getClass());
+	}*/
+
 	@Override
 	public Optional<Movie> findById(Long id) {
 		return Optional.ofNullable(em.find(Movie.class, id));
