@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Rental.class)
 @Entity
 @Table(name = "RENTALS")
-public class Rental {
+public class Rental extends BasicModel {
 	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="RENTAL_ID")
 	private Long id;

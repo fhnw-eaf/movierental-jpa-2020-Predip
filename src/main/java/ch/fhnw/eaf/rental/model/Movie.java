@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "MOVIES")
-public class Movie {
+public class Movie extends BasicModel {
 	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="MOVIE_ID")
 	private Long id;

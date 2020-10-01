@@ -10,7 +10,7 @@ import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Rental.class)
 @Entity
 @Table(name = "USERS")
-public class User {
+public class User extends BasicModel {
 	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="USER_ID")
 	private Long id;

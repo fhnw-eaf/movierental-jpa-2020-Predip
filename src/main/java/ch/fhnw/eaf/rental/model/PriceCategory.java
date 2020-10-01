@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PRICECATEGORIES")
 @DiscriminatorColumn(name = "PRICECATEGORY_TYPE")
-public abstract class PriceCategory {
+public abstract class PriceCategory extends BasicModel {
 	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="PRICECATEGORY_ID")
 	private Long id;
