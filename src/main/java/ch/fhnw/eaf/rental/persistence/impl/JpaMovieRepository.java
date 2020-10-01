@@ -8,22 +8,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public class JpaMovieRepository implements MovieRepository {
+public class JpaMovieRepository extends JPARepository<Movie> implements MovieRepository {
 
 	@PersistenceContext
 	private EntityManager em;
 
-	/*public JpaMovieRepository(Movie specificClass) {
-		super(specificClass.getClass());
-	}*/
+	public JpaMovieRepository(Movie specificClass) {
+		super((Class<Movie>) specificClass.getClass());
+	}
 
-	@Override
+	/*@Override
 	public Optional<Movie> findById(Long id) {
 		return Optional.ofNullable(em.find(Movie.class, id));
-	}
+	}*/
 
 	@Override
 	public List<Movie> findAll() {
@@ -31,7 +30,7 @@ public class JpaMovieRepository implements MovieRepository {
 		return q.getResultList();
 	}
 
-	@Override
+	/*@Override
 	public Movie save(Movie t) {
 		return em.merge(t);
 	}
@@ -44,7 +43,7 @@ public class JpaMovieRepository implements MovieRepository {
 	@Override
 	public void delete(Movie entity) {
 		em.remove(em.merge(entity));
-	}
+	}*/
 
 	@Override
 	public boolean existsById(Long id) {

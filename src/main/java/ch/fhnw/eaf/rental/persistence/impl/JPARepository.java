@@ -17,6 +17,7 @@ public abstract class JPARepository<T> implements Repository<T, Long> {
         this.specificClass = specificClass;
     }
 
+
     @Override
     public Optional<T> findById(Long id) {
         return Optional.ofNullable(em.find(specificClass, id));
