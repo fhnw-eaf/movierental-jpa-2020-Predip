@@ -21,7 +21,7 @@ public class User extends BasicModel {
 	private String firstName;
 	@Column(name="USER_EMAIL")
 	private String email;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Rental> rentals;
 
 	protected User() {}
