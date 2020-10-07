@@ -10,25 +10,13 @@ import javax.persistence.*;
 
 @JsonDeserialize(using = PriceCategoryDeserializer.class)
 @JsonSerialize(using = PriceCategorySerializer.class)
-@Entity
-@Table(name = "PRICECATEGORIES")
+@Entity @Table(name = "PRICECATEGORIES")
+@AttributeOverride(name = "id", column = @Column(name = "PRICECATEGORY_ID"))
 @DiscriminatorColumn(name = "PRICECATEGORY_TYPE")
 public abstract class PriceCategory extends BasicModel {
-	@Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name="PRICECATEGORY_ID")
-	private Long id;
+    public abstract double getCharge(int daysRented);
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public abstract double getCharge(int daysRented);
-
-	public int getFrequentRenterPoints(int daysRented) {
-		return 1;
-	}
+    public int getFrequentRenterPoints(int daysRented) {
+        return 1;
+    }
 }
