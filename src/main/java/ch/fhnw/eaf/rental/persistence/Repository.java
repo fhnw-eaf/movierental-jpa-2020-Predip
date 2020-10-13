@@ -25,10 +25,10 @@ public interface Repository<T, ID extends Serializable> {
 	 * Saves a given entity. Use the returned instance for further operations as the
 	 * save operation might have changed the entity instance completely.
 	 * 
-	 * @param entity
+	 * @param entity represent persistent data stored in a relational database
 	 * @return the saved entity
 	 */
-	T save(T t);
+	T save(T entity);
 
 	/**
 	 * Deletes the entity with the given id. Throws a runtime exception if the
@@ -42,7 +42,7 @@ public interface Repository<T, ID extends Serializable> {
 	/**
 	 * Deletes a given entity.
 	 * 
-	 * @param entity
+	 * @param entity represent persistent data stored in a relational database
 	 * @throws IllegalArgumentException in case the given entity is null.
 	 */
 	void delete(T entity);

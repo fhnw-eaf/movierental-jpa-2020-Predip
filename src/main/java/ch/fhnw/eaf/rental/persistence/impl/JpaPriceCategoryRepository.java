@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 public class JpaPriceCategoryRepository extends JpaRepository<PriceCategory> implements PriceCategoryRepository {
 
 	public JpaPriceCategoryRepository() {
-		super(PriceCategory.class, "PriceCategory");
+		super(PriceCategory.class);
 	}
 }

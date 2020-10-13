@@ -10,7 +10,7 @@ import java.util.List;
 public class JpaUserRepository extends JpaRepository<User> implements UserRepository {
 
     public JpaUserRepository() {
-        super(User.class, "User");
+        super(User.class);
     }
 
     @Override

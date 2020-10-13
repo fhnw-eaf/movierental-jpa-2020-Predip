@@ -11,7 +11,7 @@ import java.util.List;
 public class JpaMovieRepository extends JpaRepository<Movie> implements MovieRepository {
 
     public JpaMovieRepository() {
-        super(Movie.class, "Movie");
+        super(Movie.class);
     }
 
     @Override

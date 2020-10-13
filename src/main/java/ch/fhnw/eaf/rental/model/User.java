@@ -10,7 +10,6 @@ import java.util.List;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = Rental.class)
 @Entity @Table(name = "USERS")
 @AttributeOverride(name = "id", column = @Column(name = "USER_ID"))
-@NamedQuery(name = User.FIND_ALL, query = "SELECT u FROM User u")
 @NamedQuery(name = User.FIND_BY_LASTNAME, query = "SELECT u FROM User u WHERE u.lastName = :lastName")
 @NamedQuery(name = User.FIND_BY_FIRSTNAME, query = "SELECT u FROM User u WHERE u.firstName = :firstName")
 @NamedQuery(name = User.FIND_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email = :email")
@@ -23,8 +22,7 @@ public class User extends BasicModel {
     private String email;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Rental> rentals;
-
-    public static final String FIND_ALL = "User.all";
+    
     public static final String FIND_BY_LASTNAME = "User.byLastName";
     public static final String FIND_BY_FIRSTNAME = "User.byFirstName";
     public static final String FIND_BY_EMAIL = "User.byEmail";

@@ -4,7 +4,6 @@ import ch.fhnw.eaf.rental.persistence.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +13,9 @@ public abstract class JpaRepository<T> implements Repository<T, Long> {
     protected EntityManager em;
 
     private final Class<T> specificClass;
-    private final String tableName;
 
-    public JpaRepository(Class<T> specificClass, String tableName) {
+    public JpaRepository(Class<T> specificClass) {
         this.specificClass = specificClass;
-        this.tableName = tableName;
     }
 
 
@@ -44,21 +41,21 @@ public abstract class JpaRepository<T> implements Repository<T, Long> {
 
     @Override
     public List<T> findAll() {
-        TypedQuery<T> q = em.createQuery("SELECT tm FROM "+tableName+" tm", specificClass);
-        return q.getResultList();
+        return em.createQuery("SELECT tm FROM " + specificClass.getSimpleName() + " tm", specificClass)
+                .getResultList();
     }
 
     @Override
     public boolean existsById(Long id) {
-        TypedQuery<Long> q = em.createQuery(
-                "SELECT COUNT(tm) FROM "+tableName+" tm WHERE tm.id = :id", Long.class);
-        q.setParameter("id", id);
-        return q.getSingleResult() > 0;
+        return em.createQuery(
+                "SELECT COUNT(tm) FROM " + specificClass.getSimpleName() + " tm WHERE tm.id = :id", Long.class)
+                .setParameter("id", id)
+                .getSingleResult() > 0;
     }
 
     @Override
     public long count() {
-        return em.createQuery("SELECT COUNT(tm) FROM "+tableName+" tm", Long.class)
+        return em.createQuery("SELECT COUNT(tm) FROM " + specificClass.getSimpleName() + " tm", Long.class)
                 .getSingleResult();
     }
 }
