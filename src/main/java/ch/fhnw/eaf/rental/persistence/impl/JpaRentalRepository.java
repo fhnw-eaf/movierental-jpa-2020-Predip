@@ -11,7 +11,7 @@ import java.util.List;
 public class JpaRentalRepository extends JpaRepository<Rental> implements RentalRepository {
 
 	public JpaRentalRepository() {
-		super(Rental.class, "Rental");
+		super(Rental.class);
 	}
 
 	@Override

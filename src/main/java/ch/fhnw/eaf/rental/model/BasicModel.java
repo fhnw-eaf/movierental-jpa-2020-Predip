@@ -1,10 +1,11 @@
 package ch.fhnw.eaf.rental.model;
 
-//@MappedSuperclass
-//@Entity
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+import javax.persistence.*;
+
+@MappedSuperclass
 public abstract class BasicModel {
-    /*@Id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public Long getId() {
@@ -13,6 +14,5 @@ public abstract class BasicModel {
 
     public void setId(Long id) {
         this.id = id;
-    }*/
-
+    }
 }
