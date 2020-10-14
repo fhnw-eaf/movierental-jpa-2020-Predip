@@ -1,10 +1,11 @@
 package ch.fhnw.eaf.rental.persistence;
 
+import ch.fhnw.eaf.rental.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
-import ch.fhnw.eaf.rental.model.User;
-
-public interface UserRepository extends Repository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> findByLastName(String lastName);
 	List<User> findByFirstName(String firstName);
 	List<User> findByEmail(String email);

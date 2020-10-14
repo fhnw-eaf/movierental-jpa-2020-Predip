@@ -8,15 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class JpaRentalRepository extends JpaRepository<Rental> implements RentalRepository {
-
-	public JpaRentalRepository() {
-		super(Rental.class);
-	}
+public abstract class JpaRentalRepository implements RentalRepository {
 
 	@Override
 	public List<Rental> findByUser(User user) {
 		return user.getRentals();
 	}
-
 }

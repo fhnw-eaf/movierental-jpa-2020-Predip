@@ -4,14 +4,15 @@ import ch.fhnw.eaf.rental.model.User;
 import ch.fhnw.eaf.rental.persistence.UserRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class JpaUserRepository extends JpaRepository<User> implements UserRepository {
+public abstract class JpaUserRepository implements UserRepository {
 
-    public JpaUserRepository() {
-        super(User.class);
-    }
+    @PersistenceContext
+    protected EntityManager em;
 
     @Override
     public List<User> findByLastName(String lastName) {

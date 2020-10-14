@@ -4,15 +4,16 @@ import ch.fhnw.eaf.rental.model.Movie;
 import ch.fhnw.eaf.rental.persistence.MovieRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 
 @Repository
-public class JpaMovieRepository extends JpaRepository<Movie> implements MovieRepository {
+public abstract class JpaMovieRepository implements MovieRepository {
 
-    public JpaMovieRepository() {
-        super(Movie.class);
-    }
+    @PersistenceContext
+    protected EntityManager em;
 
     @Override
     public List<Movie> findByTitle(String title) {
